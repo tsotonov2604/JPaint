@@ -5,7 +5,7 @@ import model.ShapeShadingType;
 import model.ShapeType;
 import model.interfaces.IApplicationState;
 import model.interfaces.IDialogProvider;
-import model.mode.StartAndEndPointMode;
+import model.modes.StartAndEndPointMode;
 import view.interfaces.IDialogChoice;
 
 public class DialogProvider implements IDialogProvider {

@@ -1,7 +1,7 @@
 package model.dialogs;
 
 import model.interfaces.IApplicationState;
-import model.mode.StartAndEndPointMode;
+import model.modes.StartAndEndPointMode;
 import view.interfaces.IDialogChoice;
 
 public class ChooseStartAndEndPointModeDialog implements IDialogChoice<StartAndEndPointMode> {

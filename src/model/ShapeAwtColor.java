@@ -3,16 +3,10 @@ package model;
 import java.awt.*;
 import java.util.EnumMap;
 
-/**
- * Uses a "static initialization method" to create a static EnumMap
- * This maps the enum ShapeColor to java.awt.Color
- *
- * @author Moya Richards
- */
 public class ShapeAwtColor {
-    private static EnumMap<ShapeColor, java.awt.Color> map = prepareMap();
+    private static EnumMap<ShapeColor, java.awt.Color> map = colorMap();
 
-    private static EnumMap prepareMap() {
+    private static EnumMap colorMap() {
         EnumMap<ShapeColor, java.awt.Color> map = new EnumMap<ShapeColor, Color>(ShapeColor.class);
 
         map.put(ShapeColor.BLACK, Color.BLACK);
@@ -31,12 +25,6 @@ public class ShapeAwtColor {
         return map;
     }
 
-    /**
-     * Use the shapeColor name to get an instance of java.awt.Color
-     *
-     * @author Moya Richards
-     * @link https://www.daniweb.com/posts/jump/1452191
-     */
     public static Color getColor(ShapeColor shapeColor) {
         return map.get(shapeColor);
     }

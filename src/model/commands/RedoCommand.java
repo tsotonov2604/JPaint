@@ -1,12 +1,12 @@
 package model.commands;
 
-import model.Redo;
+import model.shapes.ShapeRedo;
 import model.interfaces.ICommand;
 
 public class RedoCommand implements ICommand {
-    Redo redo;
+    ShapeRedo redo;
 
-    public RedoCommand(Redo redo) {
+    public RedoCommand(ShapeRedo redo) {
         this.redo = redo;
     }
 

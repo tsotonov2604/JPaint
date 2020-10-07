@@ -1,39 +1,24 @@
 package controller.events;
 
 import model.interfaces.IApplicationState;
-import model.interfaces.IMode;
-import model.mode.DrawMode;
-import model.mode.MoveMode;
-import model.mode.SelectMode;
+import model.interfaces.IRun;
+import model.modes.DrawMode;
+import model.modes.MoveMode;
+import model.modes.SelectMode;
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-
-/**
- * Controls the mouse effects
- * <p>
- * calls reprint() on:
- * mouseReleased
- * mouseDragged
- * mouseClicked
- * mouseMoved
- *
- * @author Moya Richards
- */
 public class PaintCanvasMouseAdapter extends MouseAdapter {
 
-    /**
-     * For testing: draw a demo shape on the paint canvas
-     */
     Shape drawDemoShape;
     private PaintCanvasBase paintCanvas;
     private Point startPoint, endPoint;
     private IApplicationState appState;
-    private int dragStartX = 0;
-    private int dragStartY = 0;
+    private int xAxis = 0;
+    private int yAxis = 0;
     private MoveMode moveMode = null;
     private boolean mouseDragged = false;
 
@@ -48,29 +33,16 @@ public class PaintCanvasMouseAdapter extends MouseAdapter {
         startPoint = e.getPoint();
         endPoint = e.getPoint();
 
-
-        dragStartX = e.getX();
-        dragStartY = e.getY();
+        xAxis = e.getX();
+        yAxis = e.getY();
 
         mouseDragged = false;
-        //------------------------
-        System.out.println("===mousePressed " + e.getPoint() + " mode " + appState.getActiveStartAndEndPointMode());
-        //------------------------
+
     }
 
-
-    /**
-     * Move the shape on mouse release
-     *
-     * @param e
-     */
     public void mouseDragged(MouseEvent e) {
 
         mouseDragged = true;
-
-        //------------------------
-        System.out.println("===mouseDragged " + e.getPoint() + " mode " + appState.getActiveStartAndEndPointMode());
-        //------------------------
 
         int currentX = e.getX();
         int currentY = e.getY();
@@ -78,42 +50,26 @@ public class PaintCanvasMouseAdapter extends MouseAdapter {
         switch (appState.getActiveStartAndEndPointMode()) {
             case MOVE:
 
-                int translateXX = currentX - dragStartX;
-                int translateYY = currentY - dragStartY;
+                int translateXX = currentX - xAxis;
+                int translateYY = currentY - yAxis;
                 Point transformPos = new Point(translateXX, translateYY);
 
-                System.out.println("+++ =------ -dragStartX  " + dragStartX + " -dragStartY  " + dragStartY + " transformPos " + transformPos);
-
-                /*
-                 * dragStartX, dragStartY originally contained the mouse position when it was pressed
-                 * now it must be reset to match the current movement of the mouse
-                 */
-                dragStartX = currentX;
-                dragStartY = currentY;
-
+                xAxis = currentX;
+                yAxis = currentY;
 
                 moveMode = new MoveMode(startPoint, transformPos, paintCanvas, appState);
-                moveMode.operate();
+                moveMode.run();
 
                 break;
         }
     }
 
-    /**
-     * Draw the shape on mouse release
-     * Select multiple shapes on mouse release
-     */
     @Override
     public void mouseReleased(MouseEvent e) {
 
-        //------------------------
-        System.out.println("===mouseReleased " + e.getPoint() + " mode: " + appState.getActiveStartAndEndPointMode());
-        //------------------------
-
         endPoint = e.getPoint();
 
-
-        IMode mode = null;
+        IRun mode = null;
 
         switch (appState.getActiveStartAndEndPointMode()) {
             case DRAW:
@@ -124,14 +80,14 @@ public class PaintCanvasMouseAdapter extends MouseAdapter {
                 break;
             case MOVE:
                 if (mouseDragged && moveMode != null) {
-                    moveMode.lockMovement(endPoint);
+                    moveMode.movement(endPoint);
                 }
 
                 break;
         }
 
         if (mode != null) {
-            mode.operate();
+            mode.run();
         }
     }
 }

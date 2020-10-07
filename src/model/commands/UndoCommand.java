@@ -1,12 +1,12 @@
 package model.commands;
 
-import model.Undo;
+import model.shapes.ShapeUndo;
 import model.interfaces.ICommand;
 
 public class UndoCommand implements ICommand {
-    Undo undo;
+    ShapeUndo undo;
 
-    public UndoCommand(Undo undo) {
+    public UndoCommand(ShapeUndo undo) {
         this.undo = undo;
     }
 

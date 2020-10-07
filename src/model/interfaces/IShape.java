@@ -3,11 +3,6 @@ package model.interfaces;
 import java.awt.*;
 import java.util.List;
 
-/**
- * Shape interface
- *
- * @author Moya Richards
- */
 public interface IShape {
     void paintShapeOnCanvas();
 
@@ -19,17 +14,9 @@ public interface IShape {
 
     void deleteShape();
 
-    Shape getBoundingBox();
-
-    IShape copyShape();
-
-    IShape pasteShape();
-
     void create();
 
     void moveShape(int transformOffsetX, int transformOffsetY);
-
-    List<IShape> getNodeList();
 
 
 }

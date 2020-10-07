@@ -16,15 +16,15 @@ import view.interfaces.PaintCanvasBase;
 
 public class Main {
 
-
     public static void main(String[] args) {
+        //CANVAS SETUP
         PaintCanvasBase paintCanvas = new PaintCanvas();
         IGuiWindow guiWindow = new GuiWindow(paintCanvas);
         IUiModule uiModule = new Gui(guiWindow);
         ApplicationState appState = new ApplicationState(uiModule);
         IJPaintController controller = new JPaintController(uiModule, appState);
 
-
+        //EVENT LISTENER CONFIG
         PaintObservable paintObservable = new PaintObservable();
         paintObservable.addObserver((IObserver) paintCanvas);
 
@@ -33,10 +33,10 @@ public class Main {
         controller.setup();
         buttonActions.setup();
 
+        //MOUSE LISTENER CONFIG
         PaintCanvasMouseAdapter paintCanvasMouseAdapter = new PaintCanvasMouseAdapter(paintCanvas, appState);
         paintCanvas.addMouseListener(paintCanvasMouseAdapter);
         paintCanvas.addMouseMotionListener(paintCanvasMouseAdapter);
-        //--------------------------------------------------------------
 
     }
 }

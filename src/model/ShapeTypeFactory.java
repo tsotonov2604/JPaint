@@ -1,17 +1,10 @@
 package model;
 
-import model.interfaces.IShapeTypeStrategy;
-import model.util.ShapeProperty;
-
+import model.interfaces.IShapeType;
+import model.shapes.ShapeProperty;
 import java.awt.*;
 
-/**
- * Factory to create shape types from strategies
- *
- * @author Moya Richards
- */
 public class ShapeTypeFactory {
-
 
     public static Shape build(ShapeProperty shapeProperty) {
         Shape shape = null;
@@ -24,25 +17,20 @@ public class ShapeTypeFactory {
         Point startPoint = shapeProperty.getStartPoint();
         Point endPoint = shapeProperty.getEndPoint();
 
-
-        /*
-         * Get the type of shape to draw on the paint canvas
-         */
-        IShapeTypeStrategy shapeTypeStrategy = null;
+        IShapeType shapeTypeStrategy = null;
 
         switch (shapeType) {
             case RECTANGLE:
-                shapeTypeStrategy = new DesignRectangleShapeStrategy(shapeXcoord, shapeYcoord, width, height);
+                shapeTypeStrategy = new DrawRectangle(shapeXcoord, shapeYcoord, width, height);
                 break;
             case ELLIPSE:
-                shapeTypeStrategy = new DesignEllipseShapeStrategy(shapeXcoord, shapeYcoord, width, height);
+                shapeTypeStrategy = new DrawEllipse(shapeXcoord, shapeYcoord, width, height);
                 break;
             case TRIANGLE:
-                //shapeTypeStrategy = new DesignIsoscelesTriangleShapeStrategy(shapeXcoord, shapeYcoord, width, height);
-                shapeTypeStrategy = new DesignRightTriangleShapeStrategy(startPoint, endPoint);
+                shapeTypeStrategy = new DrawRightTriangle(startPoint, endPoint);
                 break;
         }
-        return shape = shapeTypeStrategy.design();
+        return shape = shapeTypeStrategy.drawShape();
     }
 }
 

@@ -13,8 +13,6 @@ import java.util.List;
 public class SelectShape implements IUndoable {
 
     private Point startPoint, endPoint;
-
-
     private Graphics2D graphics2d;
     private PaintCanvasBase paintCanvas;
     private IApplicationState appState;
@@ -29,31 +27,20 @@ public class SelectShape implements IUndoable {
     }
 
 
-    /**
-     * Reset the selected shapes in the list
-     * Add the selected shapes to the shapeCollection
-     * Multi Selection occurs on - mouseReleased
-     */
-    public void operate() {
+    public void runSelection() {
         ShapeRepository.selectedCollection.clear();
 
         List<IShape> shapeList = ShapeRepository.shapeCollection.getList();
         ArrayList<IShape> tempList = new ArrayList<>(shapeList);
 
-        SelectBoundingBox selectBoundingBox = SelectBoundingBox.getInstance();
+        ShapeOutline selectBoundingBox = ShapeOutline.getInstance();
         selectBoundingBox.generateFromPoints(startPoint, endPoint);
 
 
-        /*
-         * Draw Outlined rectangular box - repaint happens really quickly so this might be pointless code
-         */
-        selectBoundingBox.drawBoundingBox(graphics2d);
+        //rectangle outline
+        selectBoundingBox.drawOutline(graphics2d);
 
-        /*
-         * Select All shapes within the bounding box to the select shape collection
-         */
-
-        Shape selectBoundingBoxShape = selectBoundingBox.getBoundingBox();
+        Shape selectBoundingBoxShape = selectBoundingBox.getOutline();
 
         for (IShape shape : shapeList) {
             if (shape.detectCollision(selectBoundingBoxShape)) {
@@ -62,28 +49,17 @@ public class SelectShape implements IUndoable {
         }
 
         boolean result = !ShapeRepository.shapeCollection.getList().isEmpty();
-        if (result) {
-            System.out.println("------------------------------------------");
-            System.out.println("------------------------------------------");
-
-            System.out.println("<<-- Shape selected - ShapeRepository.selectedCollection --- " + ShapeRepository.selectedCollection.toString());
-            System.out.println("------------------------------------------");
-            System.out.println("------------------------------------------");
-        }
 
         paintCanvas.repaint();
     }
 
     public void undo() {
         ShapeRepository.selectedCollection.clear();
-
-        System.out.println("<<-- ShapeRepository.selectedCollection unselected " + ShapeRepository.selectedCollection.toString());
         paintCanvas.repaint();
     }
 
     public void redo() {
-        operate();
-        System.out.println("<<-- ShapeRepository.selectedCollection reselected " + ShapeRepository.selectedCollection.toString());
+        runSelection();
         paintCanvas.repaint();
     }
 }

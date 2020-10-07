@@ -6,7 +6,7 @@ import model.ShapeType;
 import model.dialogs.DialogProvider;
 import model.interfaces.IApplicationState;
 import model.interfaces.IDialogProvider;
-import model.mode.StartAndEndPointMode;
+import model.modes.StartAndEndPointMode;
 import view.interfaces.IUiModule;
 
 import java.io.Serializable;
@@ -79,18 +79,14 @@ public class ApplicationState implements IApplicationState, Serializable {
     }
 
     private void setDefaults() {
-        activeShapeType = ShapeType.ELLIPSE;
+        activeShapeType = ShapeType.RECTANGLE;
         activePrimaryColor = ShapeColor.BLUE;
-        activeSecondaryColor = ShapeColor.GREEN;
+        activeSecondaryColor = ShapeColor.RED;
         activeShapeShadingType = ShapeShadingType.FILLED_IN;
         activeStartAndEndPointMode = StartAndEndPointMode.DRAW;
     }
 
 
-    /**
-     * Display the parameters of the ApplicationState object
-     * Author Moya Richards
-     */
     @Override
     public String toString() {
         return "ApplicationState{" +

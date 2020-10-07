@@ -25,7 +25,7 @@ public enum EventName {
             return "CHOOSE SHADING TYPE";
         }
     },
-    CHOOSE_START_POINT_ENDPOINT_MODE {
+    CHOOSE_MOUSE_MODE {
         @Override
         public String toString() {
             return "CHOOSE MOUSE MODE";

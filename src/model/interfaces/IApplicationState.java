@@ -3,7 +3,7 @@ package model.interfaces;
 import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
-import model.mode.StartAndEndPointMode;
+import model.modes.StartAndEndPointMode;
 
 public interface IApplicationState {
     void setActiveShape();

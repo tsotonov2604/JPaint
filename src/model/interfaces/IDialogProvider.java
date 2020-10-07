@@ -3,7 +3,7 @@ package model.interfaces;
 import model.ShapeColor;
 import model.ShapeShadingType;
 import model.ShapeType;
-import model.mode.StartAndEndPointMode;
+import model.modes.StartAndEndPointMode;
 import view.interfaces.IDialogChoice;
 
 public interface IDialogProvider {

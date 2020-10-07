@@ -1,14 +1,8 @@
 package model.interfaces;
 
-import model.util.ShapeProperty;
-
+import model.shapes.ShapeProperty;
 import java.awt.*;
 
-/**
- * Shape interface
- *
- * @author Moya Richards
- */
 public interface IDrawShape {
     void designShape();
 
@@ -22,8 +16,5 @@ public interface IDrawShape {
 
     void updateShapeProperty(Shape newShape);
 
-    //-----------------------------
-
-    //public void create();
 }
 

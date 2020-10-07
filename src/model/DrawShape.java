@@ -2,8 +2,8 @@ package model;
 
 import model.collection.ShapeRepository;
 import model.interfaces.*;
-import model.util.ShapeCollision;
-import model.util.ShapeProperty;
+import model.shapes.ShapeCollision;
+import model.shapes.ShapeProperty;
 import view.interfaces.PaintCanvasBase;
 
 import java.awt.*;
@@ -14,7 +14,7 @@ import java.util.List;
 public class DrawShape implements IShape, IDrawShape, IUndoable {
 
     Shape shape = null;
-    IShapeTypeStrategy shapeTypeStrategy = null;
+    IShapeType shapeTypeStrategy = null;
     private PaintCanvasBase paintCanvas;
     private ShapeProperty shapeProperty;
     private Graphics2D graphics2d;
@@ -70,7 +70,7 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
         Color primaryColor = shapeProperty.getPrimaryColor();
         Color secondaryColor = shapeProperty.getSecondaryColor();
 
-        IDrawable drawableShape = new NullShapeStrategy();
+        IDrawable drawableShape = null;
 
         //Draw the shapes on the paintCanvas
         switch (shapeShadingType) {
@@ -110,33 +110,12 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
         ShapeRepository.shapeCollection.add(this);
     }
 
-    @Override
-    public IShape copyShape() {
-        IShape copiedShape = new DrawShape(this, paintCanvas);
-
-        return copiedShape;
-    }
 
     /**
      * create a new shape by transforming the old copied shape
      * Replace the shape in the clipboard with the offsetted shape so that each paste of that object will automatically have a new offset
      */
-    @Override
-    public IShape pasteShape() {
 
-        DrawShape pastedShape = new DrawShape(this, paintCanvas);
-
-        AffineTransform transform = new AffineTransform();
-
-        //** move the copied IShaped a few points on the x and y axis
-        transform.translate(80, 80);
-
-        Shape offsetCopiedShape = transform.createTransformedShape(this.getShape());
-
-        pastedShape.setShape(offsetCopiedShape);
-
-        return (DrawShape)pastedShape;
-    }
 
     /**
      *  create new shape by transforming the old shape
@@ -179,7 +158,7 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
         BasicStroke stroke = new BasicStroke(4.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 10f, dash, 0.0f);
 
 
-        OutlineShapeStrategy drawableShape = new OutlineShapeStrategy(Color.yellow, shape, graphics2d);
+        DrawOutline drawableShape = new DrawOutline(Color.yellow, shape, graphics2d);
         drawableShape.setStroke(stroke);
         drawableShape.paintShape();
     }
