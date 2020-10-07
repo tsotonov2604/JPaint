@@ -19,13 +19,7 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
     private ShapeProperty shapeProperty;
     private Graphics2D graphics2d;
 
-    /**
-     * Copy Constructor
-     * creates a new object is created from an existing object, as a copy of the existing object
-     *
-     * @param ds a reference to the DrawShape object to be copied
-     * @param paintCanvas the specified Graphics context
-     */
+
     public DrawShape(IDrawShape ds, PaintCanvasBase paintCanvas) {
         ShapeProperty dsShapeProp = ds.getShapeProperty();
 
@@ -52,18 +46,13 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
         designShape();
     }
 
-    /**
-     * create the shape to be drawn on the canvas
-     */
+
     public void designShape() {
 
         shape = ShapeTypeFactory.build(shapeProperty);
     }
 
-    /**
-     * Place the shape on the canvas
-     * this method is called in response to a call to repaint
-     */
+
     public void paintShapeOnCanvas() {
 
         ShapeShadingType shapeShadingType = shapeProperty.getShadingType();
@@ -88,22 +77,15 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
         drawableShape.paintShape();
     }
 
-    /**
-     * Clear all selected shapes before drawing new shape
-     * repaint the screen
-     */
+
     public void draw() {
         create();
         paintCanvas.repaint();
     }
 
-    /**
-     * add the shape to the ShapeRepository.shapeCollection list
-     */
 
     @Override
     public void create() {
-         //** Clear all selected shapes before drawing new shapes
         ShapeRepository.selectedCollection.clear();
 
         paintShapeOnCanvas();
@@ -111,16 +93,6 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
     }
 
 
-    /**
-     * create a new shape by transforming the old copied shape
-     * Replace the shape in the clipboard with the offsetted shape so that each paste of that object will automatically have a new offset
-     */
-
-
-    /**
-     *  create new shape by transforming the old shape
-     *  the replaced shape object will automatically have a new offset derived from the mouse's position
-     */
     @Override
     public void moveShape(int transformOffsetX, int transformOffsetY) {
 
@@ -137,28 +109,16 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
 
     }
 
-    /**
-     * Determines whether another shape has collided with this shape.
-     *
-     * @param otherShape The shape use to detecting if there is an intersection between it this shape
-     * @return true if  a collision was detected, false if no collision was detected
-     *
-     *
-     */
     public boolean detectCollision(Shape otherShape) {
         return ShapeCollision.detect(shape, otherShape);
     }
 
-
-    /**
-     * highlight selected Shape
-     */
     public void highlightShape() {
         float[] dash = {7.0f, 7.0f};
         BasicStroke stroke = new BasicStroke(4.0f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 10f, dash, 0.0f);
 
 
-        DrawOutline drawableShape = new DrawOutline(Color.yellow, shape, graphics2d);
+        DrawOutline drawableShape = new DrawOutline(Color.black, shape, graphics2d);
         drawableShape.setStroke(stroke);
         drawableShape.paintShape();
     }
@@ -177,10 +137,6 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
         return shapeProperty;
     }
 
-    public void setShapeProperty(ShapeProperty shapeProperty) {
-        this.shapeProperty = shapeProperty;
-    }
-
     public Shape getBoundingBox() {
         return shape.getBounds();
     }
@@ -189,11 +145,6 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
         return shape;
     }
 
-
-    /**
-     * Inject a new shape
-     * @param shape
-     */
     public void setShape(Shape shape) {
         this.shape = shape;
 
@@ -201,11 +152,7 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
         updateShapeProperty(shape);
     }
 
-    /**
-     * Use the shape that was previous drawn to keep the properties of this class in sync
-     *
-     * @param shp
-     */
+
     public void updateShapeProperty(Shape shp) {
         Rectangle rect = shp.getBounds();
         Point startPoint1 = new Point(rect.x, rect.y);
