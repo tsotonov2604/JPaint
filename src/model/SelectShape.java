@@ -33,7 +33,7 @@ public class SelectShape implements IUndoable {
         List<IShape> shapeList = ShapeRepository.shapeCollection.getList();
         ArrayList<IShape> tempList = new ArrayList<>(shapeList);
 
-        ShapeOutline selectBoundingBox = ShapeOutline.getInstance();
+        SelectBoundingBox selectBoundingBox = SelectBoundingBox.getInstance();
         selectBoundingBox.generateFromPoints(startPoint, endPoint);
 
 

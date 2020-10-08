@@ -1,24 +1,24 @@
 package model;
 
-import model.shapes.ShapeSelectionOutline;
+import model.shapes.ShapeBoundingBox;
 import java.awt.*;
 
-public class ShapeOutline {
+public class SelectBoundingBox {
 
-    public static ShapeOutline instance;
+    public static SelectBoundingBox instance;
     private Shape boundingBox;
 
-    private ShapeOutline() {
+    private SelectBoundingBox() {
     }
 
-    public static ShapeOutline getInstance() {
+    public static SelectBoundingBox getInstance() {
         if (instance == null)
-            instance = new ShapeOutline();
+            instance = new SelectBoundingBox();
         return instance;
     }
 
     public Shape generateFromPoints(Point startPoint, Point endPoint) {
-        ShapeSelectionOutline shapeBoundingBox = new ShapeSelectionOutline();
+        ShapeBoundingBox shapeBoundingBox = new ShapeBoundingBox();
         this.boundingBox = shapeBoundingBox.generateSelection(startPoint, endPoint);
 
         return this.boundingBox;

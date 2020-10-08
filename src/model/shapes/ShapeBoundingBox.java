@@ -2,22 +2,22 @@ package model.shapes;
 
 import model.ShapeType;
 import model.ShapeTypeFactory;
-import model.interfaces.ISelectShapeOutline;
+import model.interfaces.IBoundingBox;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ShapeSelectionOutline implements ISelectShapeOutline {
+public class ShapeBoundingBox implements IBoundingBox {
     List<Shape> list;
     Shape boundingBox;
 
-    public ShapeSelectionOutline(List<Shape> list) {
+    public ShapeBoundingBox(List<Shape> list) {
         this.list = list;
         updateSelection();
     }
 
-    public ShapeSelectionOutline() {
+    public ShapeBoundingBox() {
     }
 
     public Shape generateFromList(List<Shape> shapeList) {
