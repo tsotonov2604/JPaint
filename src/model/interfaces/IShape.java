@@ -12,7 +12,6 @@ public interface IShape {
 
     boolean detectCollision(Shape otherShape);
 
-    void deleteShape();
 
     void create();
 
@@ -21,6 +20,8 @@ public interface IShape {
     IShape copyShape();
 
     IShape pasteShape();
+
+    void deleteShape();
 
     List<IShape> getNodeList();
 

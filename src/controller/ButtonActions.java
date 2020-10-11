@@ -2,10 +2,7 @@ package controller;
 
 import model.*;
 import model.commands.*;
-import model.shapes.ShapeCopy;
-import model.shapes.ShapePaste;
-import model.shapes.ShapeRedo;
-import model.shapes.ShapeUndo;
+import model.shapes.*;
 import view.EventName;
 import view.interfaces.IUiModule;
 import view.interfaces.PaintCanvasBase;
@@ -32,6 +29,7 @@ public class ButtonActions implements IJPaintController {
         uiModule.addEvent(EventName.REDO, () -> redoCommand());
         uiModule.addEvent(EventName.COPY, () -> copyCommand());
         uiModule.addEvent(EventName.PASTE, () -> pasteCommand());
+        uiModule.addEvent(EventName.DELETE,() -> deleteCommand());
     }
 
     public void undoCommand() {
@@ -56,6 +54,13 @@ public class ButtonActions implements IJPaintController {
         ShapePaste shapePaste = new ShapePaste(paintCanvas);
         PasteCommand pasteCommand = new PasteCommand(shapePaste);
         pasteCommand.run();
+    }
+
+    public void deleteCommand() {
+        ShapeDelete shapeDelete = new ShapeDelete(paintCanvas);
+        DeleteCommand deleteCommand = new DeleteCommand(shapeDelete);
+        deleteCommand.run();
+
     }
 
 }
