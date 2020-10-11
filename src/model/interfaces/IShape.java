@@ -18,6 +18,12 @@ public interface IShape {
 
     void moveShape(int transformOffsetX, int transformOffsetY);
 
+    IShape copyShape();
+
+    IShape pasteShape();
+
+    List<IShape> getNodeList();
+
 
 }
 

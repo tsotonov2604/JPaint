@@ -92,6 +92,29 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
         ShapeRepository.shapeCollection.add(this);
     }
 
+    @Override
+    public IShape copyShape() {
+        IShape copiedShape = new DrawShape(this, paintCanvas);
+
+        return copiedShape;
+    }
+
+    @Override
+    public IShape pasteShape() {
+
+        DrawShape pastedShape = new DrawShape(this, paintCanvas);
+
+        AffineTransform transform = new AffineTransform();
+
+        transform.translate(80, 80);
+
+        Shape offsetCopiedShape = transform.createTransformedShape(this.getShape());
+
+        pastedShape.setShape(offsetCopiedShape);
+
+        return (DrawShape)pastedShape;
+    }
+
 
     @Override
     public void moveShape(int transformOffsetX, int transformOffsetY) {
