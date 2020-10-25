@@ -12,7 +12,6 @@ public interface IShape {
 
     boolean detectCollision(Shape otherShape);
 
-
     void create();
 
     void moveShape(int transformOffsetX, int transformOffsetY);
@@ -24,6 +23,8 @@ public interface IShape {
     void deleteShape();
 
     List<IShape> getNodeList();
+
+    Shape getBoundingBox();
 
 
 }

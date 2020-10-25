@@ -4,6 +4,7 @@ import model.ShapeType;
 import model.ShapeTypeFactory;
 import model.interfaces.IBoundingBox;
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -59,6 +60,21 @@ public class ShapeBoundingBox implements IBoundingBox {
         Shape shape = ShapeTypeFactory.build(shapeProperty);
 
         return shape;
+    }
+
+    public Shape generateFromShape(Shape shape) {
+        Rectangle orig = shape.getBounds();
+        int x = orig.x;
+        int y = orig.y;
+        int width = orig.width;
+        int height = orig.height;
+
+        return new Rectangle2D.Double(x, y, width, height);
+    }
+
+
+    public Shape getBoundingBox() {
+        return this.boundingBox;
     }
 
 }
