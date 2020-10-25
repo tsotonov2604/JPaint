@@ -41,4 +41,8 @@ public class SelectBoundingBox {
 
         graphics2d.drawString("Outline", boundingBox.getBounds().x, boundingBox.getBounds().y);
     }
+
+    public Shape getBoundingBox() {
+        return boundingBox;
+    }
 }

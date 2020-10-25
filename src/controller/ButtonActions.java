@@ -31,7 +31,7 @@ public class ButtonActions implements IJPaintController {
         uiModule.addEvent(EventName.PASTE, () -> pasteCommand());
         uiModule.addEvent(EventName.DELETE,() -> deleteCommand());
         uiModule.addEvent(EventName.GROUP, () -> processGroup());
-        //uiModule.addEvent(EventName.UNGROUP, () -> processUngroup());
+        uiModule.addEvent(EventName.UNGROUP, () -> processUngroup());
     }
 
     public void undoCommand() {
@@ -71,11 +71,11 @@ public class ButtonActions implements IJPaintController {
         groupCommand.run();
     }
 
-//    public void processUngroup() {
-//        UngroupShape ungroupShape = new UngroupShape(paintCanvas);
-//        UngroupShapeCommand ungroupShapeCommand = new UngroupShapeCommand(ungroupShape);
-//        ungroupShapeCommand.run();
-//
-//    }
+    public void processUngroup() {
+       ShapeUngroup shapeUngroup = new ShapeUngroup(paintCanvas);
+       UngroupCommand ungroupCommand = new UngroupCommand(shapeUngroup);
+       ungroupCommand.run();
+
+  }
 
 }
