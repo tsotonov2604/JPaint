@@ -16,5 +16,5 @@ Singleton
 Composite 
 Observer 
 Null Object 
-Static Factory 
+Static Factory .
 
