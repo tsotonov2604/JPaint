@@ -67,18 +67,17 @@ public class ShapeGroup implements IShape, IUndoable {
             create();
 
             //Draws outline
-            selectBoundingBox.drawOutline(graphics2d);
-            drawBoundingBox();
+            drawSelectionBox();
         }
     }
 
-    public void drawBoundingBox() {
+    public void drawSelectionBox() {
         graphics2d.setStroke(new BasicStroke(8.0f));
         graphics2d.setPaint(Color.YELLOW);
         graphics2d.draw(this.getBoundingBox());
         graphics2d.setColor(Color.black);
         graphics2d.setFont(new Font("default", Font.BOLD, 14));
-        graphics2d.drawString(" (Group Bounding Box)", this.getBoundingBox().getBounds().x, this.getBoundingBox().getBounds().y);
+        graphics2d.drawString(" (Group Selection Box)", this.getBoundingBox().getBounds().x, this.getBoundingBox().getBounds().y);
     }
 
     public void unGroup() {
