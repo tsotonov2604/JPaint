@@ -1,20 +1,20 @@
-#JPaint Application
-##Final Project for: SE 450 – Object Oriented Software Development
+# JPaint Application
+Class: SE 450 – Object Oriented Software Development 
 
-##Application Features:
+## Application Features:
 
-Draw rectangles, ellipses, and triangles onto the paint canvas.
-Supports the use of various primary and secondary colors.
-The application supports multiple types of shading (filled in, filled in and outlined, outlined).
+Draw rectangles, ellipses, and triangles onto the paint canvas.  
+Supports the use of various primary and secondary colors.  
+The application supports multiple types of shading (filled in, filled in and outlined, outlined).  
 Shape manipulation commands (copy,paste,undo,redo,delete,group,ungroup).
 
-##Implemented Design Patterns:
+## Implemented Design Patterns:
 
-Command 
-Strategy 
-Singleton 
-Composite 
-Observer 
-Null Object 
+Command   
+Strategy   
+Singleton   
+Composite   
+Observer   
+Null Object   
 Static Factory 
 
