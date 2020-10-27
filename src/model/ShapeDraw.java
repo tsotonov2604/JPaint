@@ -11,7 +11,7 @@ import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DrawShape implements IShape, IDrawShape, IUndoable {
+public class ShapeDraw implements IShape, IDrawShape, IUndoable {
 
     Shape shape = null;
     IShapeType shapeTypeStrategy = null;
@@ -20,7 +20,7 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
     private Graphics2D graphics2d;
 
 
-    public DrawShape(IDrawShape ds, PaintCanvasBase paintCanvas) {
+    public ShapeDraw(IDrawShape ds, PaintCanvasBase paintCanvas) {
         ShapeProperty dsShapeProp = ds.getShapeProperty();
 
         this.shapeProperty = new ShapeProperty(dsShapeProp.getStartPoint(), dsShapeProp.getEndPoint());
@@ -38,7 +38,7 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
     }
 
 
-    public DrawShape(PaintCanvasBase paintCanvas, ShapeProperty shapeProperty) {
+    public ShapeDraw(PaintCanvasBase paintCanvas, ShapeProperty shapeProperty) {
         this.paintCanvas = paintCanvas;
         this.graphics2d = paintCanvas.getGraphics2D();
         this.shapeProperty = shapeProperty;
@@ -94,7 +94,7 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
 
     @Override
     public IShape copyShape() {
-        IShape copiedShape = new DrawShape(this, paintCanvas);
+        IShape copiedShape = new ShapeDraw(this, paintCanvas);
 
         return copiedShape;
     }
@@ -102,7 +102,7 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
     @Override
     public IShape pasteShape() {
 
-        DrawShape pastedShape = new DrawShape(this, paintCanvas);
+        ShapeDraw pastedShape = new ShapeDraw(this, paintCanvas);
 
         AffineTransform transform = new AffineTransform();
 
@@ -112,7 +112,7 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
 
         pastedShape.setShape(offsetCopiedShape);
 
-        return (DrawShape)pastedShape;
+        return (ShapeDraw)pastedShape;
     }
 
 
@@ -120,7 +120,7 @@ public class DrawShape implements IShape, IDrawShape, IUndoable {
     @Override
     public void moveShape(int transformOffsetX, int transformOffsetY) {
 
-        IShape moveShape = new DrawShape(this, paintCanvas);
+        IShape moveShape = new ShapeDraw(this, paintCanvas);
 
         AffineTransform transform = new AffineTransform();
 

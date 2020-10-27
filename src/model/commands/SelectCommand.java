@@ -1,14 +1,14 @@
 package model.commands;
 
-import model.SelectShape;
+import model.ShapeSelect;
 import model.collection.ShapeRepository;
 import model.interfaces.ICommand;
 
 
 public class SelectCommand implements ICommand {
-    SelectShape selectShape;
+    ShapeSelect selectShape;
 
-    public SelectCommand(SelectShape selectShape) {
+    public SelectCommand(ShapeSelect selectShape) {
         this.selectShape = selectShape;
     }
 

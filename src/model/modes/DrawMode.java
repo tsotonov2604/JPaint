@@ -1,6 +1,6 @@
 package model.modes;
 
-import model.DrawShape;
+import model.ShapeDraw;
 import model.ShapeAwtColor;
 import model.ShapeShadingType;
 import model.ShapeType;
@@ -41,7 +41,7 @@ public class DrawMode implements IRun {
 
     public void run() {
         if (!startPoint.equals(endPoint)) {
-            DrawShape drawShape = new DrawShape(paintCanvas, shapeProperty);
+            ShapeDraw drawShape = new ShapeDraw(paintCanvas, shapeProperty);
             DrawCommand drawShapeCommand = new DrawCommand(drawShape);
             drawShapeCommand.run();
         }

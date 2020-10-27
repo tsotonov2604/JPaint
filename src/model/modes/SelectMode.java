@@ -1,6 +1,6 @@
 package model.modes;
 
-import model.SelectShape;
+import model.ShapeSelect;
 import model.commands.SelectCommand;
 import model.interfaces.IApplicationState;
 import model.interfaces.IRun;
@@ -24,7 +24,7 @@ public class SelectMode implements IRun {
     }
 
     public void run() {
-        SelectShape selectShape = new SelectShape(startPoint, endPoint, paintCanvas, appState);
+        ShapeSelect selectShape = new ShapeSelect(startPoint, endPoint, paintCanvas, appState);
         SelectCommand selectShapeCommand = new SelectCommand(selectShape);
         selectShapeCommand.run();
     }

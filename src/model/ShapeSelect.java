@@ -10,14 +10,14 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectShape implements IUndoable {
+public class ShapeSelect implements IUndoable {
 
     private Point startPoint, endPoint;
     private Graphics2D graphics2d;
     private PaintCanvasBase paintCanvas;
     private IApplicationState appState;
 
-    public SelectShape(Point startPoint, Point endPoint, PaintCanvasBase paintCanvas, IApplicationState appState) {
+    public ShapeSelect(Point startPoint, Point endPoint, PaintCanvasBase paintCanvas, IApplicationState appState) {
         this.graphics2d = paintCanvas.getGraphics2D();
         this.paintCanvas = paintCanvas;
         this.appState = appState;
