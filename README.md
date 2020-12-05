@@ -8,7 +8,7 @@ Supports the use of various primary and secondary colors.
 The application supports multiple types of shading (filled in, filled in and outlined, outlined).  
 Shape manipulation commands (copy,paste,undo,redo,delete,group,ungroup).
 
-## Implemented Design 
+## Implemented Design Patterns
 
 Command Design Pattern
 The command design pattern was used in my project in order to encapsulate the information required for the execution of given commands. This design pattern helped increase code reusability, decoupling, and encapsulation. This pattern was used by the ICommand and IUndoable interfaces, and it was implemented in the CopyCommand, PasteCommand, UndoCommand, RedoCommand, MoveCommand, DrawCommand, SelectCommand, DeleteCommand, GroupCommand, and UngroupCommand classes.
